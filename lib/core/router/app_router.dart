@@ -46,7 +46,7 @@ class AppRouter {
       case receivePage:
         return MaterialPageRoute(builder: (_) => const ReceivePage());
       case newOrEditLink:
-        return MaterialPageRoute(builder: (_) => const NewOrEditLinkPage());
+        return MaterialPageRoute(builder: (_) => const NewOrEditLinkPage(isNew: true));
       case editUserInfo:
         return MaterialPageRoute(builder: (_) => const EditUserInfoPage());
       default:

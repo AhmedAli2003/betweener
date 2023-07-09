@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
-class EditUserInfoPage extends StatelessWidget {
-  const EditUserInfoPage({super.key});
+class EditUserInfoPage extends StatefulWidget {
+  const EditUserInfoPage({
+    super.key,
+  });
 
   @override
+  State<EditUserInfoPage> createState() => _EditUserInfoPageState();
+}
+
+class _EditUserInfoPageState extends State<EditUserInfoPage> {
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }
