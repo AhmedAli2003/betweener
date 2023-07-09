@@ -1,4 +1,5 @@
 import 'package:betweener/core/screens/splash_screen.dart';
+import 'package:betweener/features/active_share/friend_profile_page.dart';
 import 'package:betweener/features/active_share/receive_page.dart';
 import 'package:betweener/features/auth/login_page.dart';
 import 'package:betweener/features/auth/register_page.dart';
@@ -26,6 +27,8 @@ class AppRouter {
   static const String receivePage = '/receivePage';
   static const String newOrEditLink = '/newOrEditLink';
   static const String editUserInfo = '/editUserInfo';
+  static const String friendProfile = '/friendProfile';
+
 
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -49,7 +52,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const NewOrEditLinkPage());
       case editUserInfo:
         return MaterialPageRoute(builder: (_) => const EditUserInfoPage());
-      default:
+      case  friendProfile :
+      return MaterialPageRoute(builder: (_) =>  FriendProfilePage());
+    default:
         return null;
     }
   }
