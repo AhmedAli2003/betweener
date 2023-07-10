@@ -14,7 +14,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 1;
 
-  final screensList = const [
+  final screensList =  [
     ReceivePage(),
     HomePage(),
     ProfilePage(),
