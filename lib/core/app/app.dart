@@ -12,6 +12,7 @@ class App extends StatelessWidget {
       title: 'Betweener',
       theme: appTheme,
       initialRoute: AppRouter.receivePage,
+      initialRoute: AppRouter.editUserInfo,
       onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }

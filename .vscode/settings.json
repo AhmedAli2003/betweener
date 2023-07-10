@@ -4,5 +4,8 @@
         "editor.rulers": [
             150,
         ],
-    }
+    },
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
 }

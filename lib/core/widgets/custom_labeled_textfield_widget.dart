@@ -28,22 +28,19 @@ class PrimaryLabeledTextFieldWidget extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        SizedBox(
-          height: 50,
-          child: TextField(
-            keyboardType: keyboardType,
-            controller: controller,
-            obscureText: password,
-            enableSuggestions: password == true ? false : true,
-            autocorrect: password == true ? false : true,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              hintText: hint,
-              border: Styles.primaryRoundedOutlineInputBorder,
-              focusedBorder: Styles.primaryRoundedOutlineInputBorder,
-              enabledBorder: Styles.primaryRoundedOutlineInputBorder,
-              disabledBorder: Styles.primaryRoundedOutlineInputBorder,
-            ),
+        TextField(
+          keyboardType: keyboardType,
+          controller: controller,
+          obscureText: password,
+          enableSuggestions: password == true ? false : true,
+          autocorrect: password == true ? false : true,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            hintText: hint,
+            border: Styles.primaryRoundedOutlineInputBorder,
+            focusedBorder: Styles.primaryRoundedOutlineInputBorder,
+            enabledBorder: Styles.primaryRoundedOutlineInputBorder,
+            disabledBorder: Styles.primaryRoundedOutlineInputBorder,
           ),
         ),
       ],

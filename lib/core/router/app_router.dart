@@ -9,6 +9,7 @@ import 'package:betweener/features/onbording/onbording_page.dart';
 import 'package:betweener/features/profile/profile_page.dart';
 import 'package:betweener/features/settings/edit_user_info_page.dart';
 import 'package:betweener/features/settings/new_or_edit_link_page.dart';
+import 'package:betweener/features/settings/user_data.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -45,16 +46,28 @@ class AppRouter {
       case homePage:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case profilePage:
-        return MaterialPageRoute(builder: (_) => const ProfilePage());
+        return MaterialPageRoute(builder: (_) =>  ProfilePage());
       case receivePage:
         return MaterialPageRoute(builder: (_) => const ReceivePage());
       case newOrEditLink:
-        return MaterialPageRoute(builder: (_) => const NewOrEditLinkPage());
+        return MaterialPageRoute(
+          builder: (_) => const NewOrEditLinkPage(isNew: true),
+        );
       case editUserInfo:
         return MaterialPageRoute(builder: (_) => const EditUserInfoPage());
       case  friendProfile :
       return MaterialPageRoute(builder: (_) =>  FriendProfilePage());
     default:
+        return MaterialPageRoute(
+          builder: (_) => const EditUserInfoPage(
+            userData: UserData(
+              username: 'test username',
+              email: 'test@test.com',
+              phone: '+123456789',
+            ),
+          ),
+        );
+      default:
         return null;
     }
   }

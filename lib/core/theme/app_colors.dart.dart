@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  AppColors._();
 // ============= STYLE CONSTS ==============
   static const Color kScaffoldColor = Color(0xffFDFDFD);
   static const Color kRedColor = Color(0xffA90606);
