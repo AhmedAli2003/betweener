@@ -73,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 SecondaryButtonWidget(
                   onTap: () {
                     // TODO: Check login and move to the main page
+                    Navigator.pushNamed(context, AppRouter.mainPage);
                   },
                   text: 'LOGIN',
                 ),
@@ -102,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                 GoogleButtonWidget(
                   onTap: () {
                     // TODO: Sign in with Google and move to the main page
+                    Navigator.pushReplacementNamed(context, AppRouter.mainPage);
                   },
                 ),
                 const Spacer(),

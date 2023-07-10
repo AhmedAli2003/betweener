@@ -38,13 +38,13 @@ class ProfilePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(
+        shape: const CircleBorder(),
+        backgroundColor: AppColors.kPrimaryColor,
+        child: const Icon(
           Icons.add,
           size: 40,
           color: Colors.white,
         ),
-        shape: const CircleBorder(),
-        backgroundColor: AppColors.kPrimaryColor,
       ),
     );
   }
