@@ -1,3 +1,4 @@
+import 'package:betweener/core/router/app_router.dart';
 import 'package:betweener/core/theme/app_colors.dart.dart';
 import 'package:betweener/features/active_share/receive_page.dart';
 import 'package:betweener/features/home/home_page.dart';
@@ -85,16 +86,20 @@ class _MainPageState extends State<MainPage> {
           });
         },
       ),
-      floatingActionButton: _currentIndex == 2 ? FloatingActionButton(
-        onPressed: () {},
-        shape: const CircleBorder(),
-        backgroundColor: AppColors.kPrimaryColor,
-        child: const Icon(
-          Icons.add,
-          size: 40,
-          color: Colors.white,
-        ),
-    ) : null,
+      floatingActionButton: _currentIndex == 2
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AppRouter.newOrEditLink);
+              },
+              shape: const CircleBorder(),
+              backgroundColor: AppColors.kPrimaryColor,
+              child: const Icon(
+                Icons.add,
+                size: 40,
+                color: Colors.white,
+              ),
+            )
+          : null,
     );
   }
 }

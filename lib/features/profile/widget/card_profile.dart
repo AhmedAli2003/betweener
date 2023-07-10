@@ -1,10 +1,11 @@
+import 'package:betweener/core/router/app_router.dart';
 import 'package:betweener/core/theme/app_colors.dart.dart';
 import 'package:flutter/material.dart';
+
 class CardProfile extends StatelessWidget {
   const CardProfile({
     super.key,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class CardProfile extends StatelessWidget {
           ),
           const Expanded(
             child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,8 +67,13 @@ class CardProfile extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 5.0),
             child: IconButton(
-              onPressed: () {},
-              icon:const Icon(Icons.mode_edit_outline_outlined,color: AppColors.kScaffoldColor,),
+              onPressed: () {
+                Navigator.pushNamed(context, AppRouter.editUserInfo);
+              },
+              icon: const Icon(
+                Icons.mode_edit_outline_outlined,
+                color: AppColors.kScaffoldColor,
+              ),
               padding: const EdgeInsets.only(bottom: 80),
             ),
           ),

@@ -7,6 +7,7 @@ class PrimaryLabeledTextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final bool password;
   final TextInputType? keyboardType;
+  final void Function()? onEditingComplete;
   const PrimaryLabeledTextFieldWidget({
     super.key,
     required this.label,
@@ -14,6 +15,7 @@ class PrimaryLabeledTextFieldWidget extends StatelessWidget {
     this.hint,
     this.password = false,
     this.keyboardType,
+    this.onEditingComplete,
   });
 
   @override
@@ -29,6 +31,7 @@ class PrimaryLabeledTextFieldWidget extends StatelessWidget {
           height: 12,
         ),
         TextField(
+          onEditingComplete: onEditingComplete,
           keyboardType: keyboardType,
           controller: controller,
           obscureText: password,

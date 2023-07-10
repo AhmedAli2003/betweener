@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                   size: 32,
                   colorTitle: Color(0xff2D2B4E),
                   fontWeight: FontWeight.w600,
+                  
                 ),
               ],
             )),

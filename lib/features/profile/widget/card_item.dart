@@ -1,3 +1,4 @@
+import 'package:betweener/core/router/app_router.dart';
 import 'package:betweener/core/theme/app_colors.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -33,7 +34,9 @@ class CardItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRouter.newOrEditLink);
+                    },
                     icon: const Icon(
                       Icons.edit,
                       color: Colors.white,
