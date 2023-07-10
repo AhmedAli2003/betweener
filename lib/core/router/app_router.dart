@@ -30,7 +30,6 @@ class AppRouter {
   static const String editUserInfo = '/editUserInfo';
   static const String friendProfile = '/friendProfile';
 
-
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashScreen:
@@ -46,7 +45,7 @@ class AppRouter {
       case homePage:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case profilePage:
-        return MaterialPageRoute(builder: (_) =>  ProfilePage());
+        return MaterialPageRoute(builder: (_) => ProfilePage());
       case receivePage:
         return MaterialPageRoute(builder: (_) => const ReceivePage());
       case newOrEditLink:
@@ -54,10 +53,6 @@ class AppRouter {
           builder: (_) => const NewOrEditLinkPage(isNew: true),
         );
       case editUserInfo:
-        return MaterialPageRoute(builder: (_) => const EditUserInfoPage());
-      case  friendProfile :
-      return MaterialPageRoute(builder: (_) =>  FriendProfilePage());
-    default:
         return MaterialPageRoute(
           builder: (_) => const EditUserInfoPage(
             userData: UserData(
@@ -67,6 +62,8 @@ class AppRouter {
             ),
           ),
         );
+      case friendProfile:
+        return MaterialPageRoute(builder: (_) => const FriendProfilePage());
       default:
         return null;
     }

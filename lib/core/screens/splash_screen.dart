@@ -1,4 +1,4 @@
-// import 'package:betweener/core/router/app_router.dart';
+import 'package:betweener/core/router/app_router.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,16 +9,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // void _goNext() {
-  //   Future.delayed(const Duration(seconds: 3), () {
-  //     Navigator.pushReplacementNamed(context, AppRouter.onBoardingPage);
-  //   });
-  // }
+  void _goNext() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, AppRouter.onBoardingPage);
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    // _goNext();
+    _goNext();
   }
 
   @override
