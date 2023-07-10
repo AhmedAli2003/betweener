@@ -37,6 +37,7 @@ class _NewOrEditLinkPageState extends State<NewOrEditLinkPage> {
   void dispose() {
     _titleController.dispose();
     _linkController.dispose();
+    _node.dispose();
     super.dispose();
   }
 
@@ -73,7 +74,6 @@ class _NewOrEditLinkPageState extends State<NewOrEditLinkPage> {
                   label: 'Title',
                   hint: titleHint,
                   onEditingComplete: _node.nextFocus,
-                  
                 ),
                 const SizedBox(height: 24),
                 PrimaryLabeledTextFieldWidget(
