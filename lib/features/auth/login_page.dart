@@ -83,7 +83,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 SecondaryButtonWidget(
                   onTap: () {
                     //TODO:
-                    final result = ref.read(
+                    ref.read(
                       loginProvider(
                         LoginParm(
                           email: _emailController.text.trim(),
@@ -91,7 +91,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         ),
                       ),
                     );
-                    print(ref.watch(loginStatusProvider));
                   },
                   text: 'LOGIN',
                 ),

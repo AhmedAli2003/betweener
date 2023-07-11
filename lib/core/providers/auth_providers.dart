@@ -1,4 +1,3 @@
-import 'package:betweener/core/entities/login_entity.dart';
 import 'package:betweener/core/entities/user_entity.dart';
 import 'package:betweener/core/network/failures/failure.dart';
 import 'package:betweener/core/network/repo/auth_repository.dart';
