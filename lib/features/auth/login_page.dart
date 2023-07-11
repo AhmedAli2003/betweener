@@ -87,6 +87,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         hint: 'example@gmail.com',
                         keyboardType: TextInputType.emailAddress,
                         label: 'Email',
+                        onEditingComplete: _node.nextFocus,
                       ),
                       const SizedBox(
                         height: 14,
@@ -96,6 +97,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         hint: 'Enter password',
                         label: 'password',
                         password: true,
+                        onEditingComplete: _node.nextFocus,
                       ),
                       const SizedBox(
                         height: 24,
