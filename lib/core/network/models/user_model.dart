@@ -39,4 +39,9 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  @override
+  String toString() {
+    return 'UserModel(id: $id, name: $name, email: $email, emailVerifiedAt: $emailVerifiedAt, creationDate: $creationDate, lastUpdateDate: $lastUpdateDate, isActive: $isActive, country: $country, ip: $ip, long: $long, lat: $lat, fcm: $fcm)';
+  }
 }
