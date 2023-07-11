@@ -73,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
                 SecondaryButtonWidget(
                   onTap: () {
                     // TODO: Check login and move to the main page
-                    Navigator.pushNamed(context, AppRouter.mainPage);
                   },
                   text: 'LOGIN',
                 ),

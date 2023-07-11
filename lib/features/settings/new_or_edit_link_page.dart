@@ -19,6 +19,7 @@ class NewOrEditLinkPage extends StatefulWidget {
 class _NewOrEditLinkPageState extends State<NewOrEditLinkPage> {
   late final TextEditingController _titleController;
   late final TextEditingController _linkController;
+  late final FocusScopeNode _node;
 
   @override
   void initState() {
@@ -29,12 +30,14 @@ class _NewOrEditLinkPageState extends State<NewOrEditLinkPage> {
     _linkController = TextEditingController(
       text: widget.isNew ? null : widget.linkData.link,
     );
+    _node = FocusScopeNode();
   }
 
   @override
   void dispose() {
     _titleController.dispose();
     _linkController.dispose();
+    _node.dispose();
     super.dispose();
   }
 
@@ -60,31 +63,38 @@ class _NewOrEditLinkPageState extends State<NewOrEditLinkPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: Column(
-          children: [
-            const Spacer(),
-            PrimaryLabeledTextFieldWidget(
-              controller: _titleController,
-              label: 'Title',
-              hint: titleHint,
+        child: Form(
+          child: FocusScope(
+            node: _node,
+            child: Column(
+              children: [
+                const Spacer(),
+                PrimaryLabeledTextFieldWidget(
+                  controller: _titleController,
+                  label: 'Title',
+                  hint: titleHint,
+                  onEditingComplete: _node.nextFocus,
+                ),
+                const SizedBox(height: 24),
+                PrimaryLabeledTextFieldWidget(
+                  controller: _linkController,
+                  label: 'Link',
+                  hint: linkHint,
+                  keyboardType: TextInputType.url,
+                  onEditingComplete: _node.nextFocus,
+                ),
+                const SizedBox(height: 48),
+                SecondaryButtonWidget(
+                  onTap: () {
+                    //TODO: save or add
+                  },
+                  text: isNew ? 'Add' : 'Save',
+                  width: 120,
+                ),
+                const Spacer(flex: 2),
+              ],
             ),
-            const SizedBox(height: 24),
-            PrimaryLabeledTextFieldWidget(
-              controller: _linkController,
-              label: 'Link',
-              hint: linkHint,
-              keyboardType: TextInputType.url,
-            ),
-            const SizedBox(height: 48),
-            SecondaryButtonWidget(
-              onTap: () {
-                //TODO: save or add
-              },
-              text: isNew ? 'Add' : 'Save',
-              width: 120,
-            ),
-            const Spacer(flex: 2),
-          ],
+          ),
         ),
       ),
     );

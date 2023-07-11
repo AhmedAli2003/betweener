@@ -1,4 +1,5 @@
 import 'package:betweener/core/router/app_router.dart';
+import 'package:betweener/core/theme/app_colors.dart.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void _goNext() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, AppRouter.loginPage);
+      Navigator.pushReplacementNamed(context, AppRouter.onBoardingPage);
     });
   }
 
@@ -23,11 +24,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement splash screen
-    return Scaffold(
+    return const Scaffold(
+      backgroundColor: AppColors.kPrimaryColor,
       body: Center(
-        child: Container(
-          color: Colors.blue,
+        child: Text(
+          'Betweener',
+          style: TextStyle(
+            fontSize: 48,
+            color: AppColors.kLightDangerColor,
+          ),
         ),
       ),
     );
