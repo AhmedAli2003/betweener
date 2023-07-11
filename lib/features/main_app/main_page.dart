@@ -1,3 +1,4 @@
+import 'package:betweener/core/providers/shared_preferences_provider.dart';
 import 'package:betweener/core/router/app_router.dart';
 import 'package:betweener/core/theme/app_colors.dart.dart';
 import 'package:betweener/features/active_share/receive_page.dart';
@@ -5,15 +6,16 @@ import 'package:betweener/features/home/home_page.dart';
 import 'package:betweener/features/main_app/widgets/custom_floating_nav_bar.dart';
 import 'package:betweener/features/profile/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  ConsumerState<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends ConsumerState<MainPage> {
   int _currentIndex = 1;
 
   final screensList = [
@@ -75,7 +77,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar(),
+      appBar: /*getAppBar()*/ AppBar(title: Text(ref.watch(appSharedPreferencesProvider.notifier).getAccessToken())),
       body: screensList[_currentIndex],
       extendBody: true,
       bottomNavigationBar: CustomFloatingNavBar(

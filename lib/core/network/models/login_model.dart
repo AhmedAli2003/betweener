@@ -1,6 +1,7 @@
-import 'package:betweener/core/network/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:betweener/core/network/models/user_model.dart';
 
 part 'login_model.g.dart';
 
@@ -19,4 +20,7 @@ class LoginSuccessModel {
   factory LoginSuccessModel.fromJson(Map<String, dynamic> json) => _$LoginSuccessModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginSuccessModelToJson(this);
+
+  @override
+  String toString() => 'LoginSuccessModel(userModel: $userModel, token: $token)';
 }
