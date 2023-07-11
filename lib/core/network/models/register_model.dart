@@ -5,14 +5,19 @@ import 'package:json_annotation/json_annotation.dart';
 part 'register_model.g.dart';
 
 @immutable
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class RegisterModel {
   final String? message;
   final String? token;
+  final UserModel? userModel;
+  @JsonKey(name: 'errors')
+  final RegisterErrorModel? registerErrorModel;
 
   const RegisterModel({
     required this.message,
     required this.token,
+    required this.userModel,
+    required this.registerErrorModel,
   });
 
   factory RegisterModel.fromJson(Map<String, dynamic> json) => _$RegisterModelFromJson(json);
@@ -22,43 +27,10 @@ class RegisterModel {
 
 @immutable
 @JsonSerializable()
-class RegisterSuccessModel extends RegisterModel {
-  @JsonKey(name: 'user')
-  final UserModel? userModel;
-
-  const RegisterSuccessModel({
-    required super.message,
-    required super.token,
-    required this.userModel,
-  });
-
-  factory RegisterSuccessModel.fromJson(Map<String, dynamic> json) => _$RegisterSuccessModelFromJson(json);
-
-  @override
-  Map<String, dynamic> toJson() => _$RegisterSuccessModelToJson(this);
-}
-
-@immutable
-@JsonSerializable()
-class RegisterFailureModel extends RegisterModel {
-  @JsonKey(name: 'errors')
-  final RegisterErrorModel? registerErrorModel;
-  const RegisterFailureModel({
-    required super.message,
-    required super.token,
-    required this.registerErrorModel,
-  });
-
-    factory RegisterFailureModel.fromJson(Map<String, dynamic> json) => _$RegisterFailureModelFromJson(json);
-
-  @override
-  Map<String, dynamic> toJson() => _$RegisterFailureModelToJson(this);
-}
-
-@immutable
-@JsonSerializable()
 class RegisterErrorModel {
+  @JsonKey(name: 'email')
   final List<String>? emailErrors;
+  @JsonKey(name: 'password')
   final List<String>? passwordErrors;
 
   const RegisterErrorModel({

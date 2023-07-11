@@ -54,7 +54,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<RegisterSuccessModel> register({
+  Future<RegisterModel> register({
     required String name,
     required String email,
     required String password,
@@ -69,8 +69,8 @@ class _ApiClient implements ApiClient {
       'password': password,
       'password_confirmation': passwordConfirmation,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<RegisterSuccessModel>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RegisterModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -86,7 +86,7 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = RegisterSuccessModel.fromJson(_result.data!);
+    final value = RegisterModel.fromJson(_result.data!);
     return value;
   }
 

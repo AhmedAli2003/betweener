@@ -17,7 +17,7 @@ abstract class ApiClient {
   });
 
   @POST(AppUrls.register)
-  Future<RegisterSuccessModel> register({
+  Future<RegisterModel> register({
     @Field('name') required String name,
     @Field('email') required String email,
     @Field('password') required String password,

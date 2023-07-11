@@ -15,27 +15,53 @@ enum ConnectionState {
   cancel(-4, 'Cancel timeout, try again'),
   cacheError(-5, 'Cache error, try again later'),
   noInternetConnection(-6, 'No Internet connection'),
-  unknownError(-7, 'Unknown error, try again later');
+  unknown(-7, 'Unknown error, try again later');
 
   final int statusCode;
   final String message;
   const ConnectionState(this.statusCode, this.message);
 }
 
-// extension ConnectionStateExtension on ConnectionState {
-//   Failure getFailure() {
-//     switch(this) {
-//       case ConnectionState.success:
-
-//     }
-//   }
-// }
+extension ConnectionStateExtension on ConnectionState {
+  Failure getFailure() {
+    return Failure(statusCode, message);
+  }
+}
 
 class ErrorHandler implements Exception {
-  late final Failure failure;
+  late final Failure _failure;
+
+  Failure get failure => _failure;
 
   ErrorHandler.handle(dynamic exception) {
     if (exception is DioException) {
-    } else {}
+      _failure = _handleDioException(exception);
+    } else {
+      _failure = ConnectionState.unknown.getFailure();
+    }
+  }
+
+  Failure _handleDioException(DioException exception) {
+    switch (exception.type) {
+      case DioExceptionType.connectionTimeout:
+        return ConnectionState.connectTimeout.getFailure();
+      case DioExceptionType.sendTimeout:
+        return ConnectionState.sendTimeout.getFailure();
+      case DioExceptionType.receiveTimeout:
+        return ConnectionState.receiveTimeout.getFailure();
+      case DioExceptionType.badResponse:
+        if (exception.response?.statusCode != null && exception.response?.statusMessage != null) {
+          return Failure(exception.response!.statusCode!, exception.response!.data['message']);
+        }
+        return ConnectionState.unknown.getFailure();
+      case DioExceptionType.cancel:
+        return ConnectionState.cancel.getFailure();
+      case DioExceptionType.connectionError:
+        return ConnectionState.noInternetConnection.getFailure();
+      case DioExceptionType.badCertificate:
+        return ConnectionState.forbidden.getFailure();
+      case DioExceptionType.unknown:
+        return ConnectionState.unknown.getFailure();
+    }
   }
 }
