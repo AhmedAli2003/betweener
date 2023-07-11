@@ -53,17 +53,14 @@ class AppRouter {
           builder: (_) => const NewOrEditLinkPage(isNew: true),
         );
       case editUserInfo:
-        return MaterialPageRoute(
-          builder: (_) => const EditUserInfoPage(
-            userData: UserData(
+        return MaterialPageRoute(builder: (_) => const EditUserInfoPage(   userData: UserData(
               username: 'test username',
               email: 'test@test.com',
               phone: '+123456789',
-            ),
-          ),
-        );
-      case friendProfile:
-        return MaterialPageRoute(builder: (_) => const FriendProfilePage());
+            ),));
+      case  friendProfile :
+      return MaterialPageRoute(builder: (_) =>  FriendProfilePage());
+ 
       default:
         return null;
     }

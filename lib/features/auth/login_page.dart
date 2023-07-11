@@ -82,6 +82,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 SecondaryButtonWidget(
                   onTap: () {
+                    // TODO: Check login and move to the main page
+
                     //TODO:
                     ref.read(
                       loginProvider(
