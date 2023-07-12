@@ -18,6 +18,7 @@ class FriendProfilePage extends StatelessWidget {
     // ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
     // final id = routeArgument?["id"] ?? "NoData";
     // final name = routeArgument?["name"] ??"NoData";
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -72,7 +73,7 @@ class FriendProfilePage extends StatelessWidget {
                         style: TextStyle(color: AppColors.kOnLightDangerColor, fontSize: 22, letterSpacing: 3),
                       ),
                       Text(
-                        "sdJHUIFHiojhzsdihioxj",
+                        'sdiohzsdihioxj',
                         style: TextStyle(color: AppColors.kLinksColor, fontSize: 17),
                       )
                     ],

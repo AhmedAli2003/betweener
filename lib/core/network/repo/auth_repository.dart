@@ -1,4 +1,5 @@
 import 'package:betweener/core/entities/login_entity.dart';
+import 'package:betweener/core/entities/long_lat_entity.dart';
 import 'package:betweener/core/entities/register_entity.dart';
 import 'package:betweener/core/network/failures/error_handler.dart';
 import 'package:betweener/core/network/failures/failure.dart';
@@ -12,6 +13,7 @@ import 'package:dartz/dartz.dart';
 typedef LoginResponse = Future<Either<Failure, LoginEntity>>;
 typedef RegisterResponse = Future<Either<Failure, RegisterEntity>>;
 typedef RequestResponse<T> = Future<Either<Failure, T>>;
+typedef UpdateLocationResponse = Future<Either<Failure, LongLatEntity>>;
 
 class AuthRepository {
   final ApiClient _apiClient;
@@ -55,6 +57,10 @@ class AuthRepository {
       ))
           .toEntity(),
     );
+  }
+
+  UpdateLocationResponse updateUserLocation(int id) async {
+    return _request<LongLatEntity>(() async => (await _apiClient.updateUserLocation(id: id)).toEntity());
   }
 
   // LoginResponse login({

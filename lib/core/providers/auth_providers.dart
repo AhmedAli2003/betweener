@@ -81,7 +81,12 @@ final loginProvider = FutureProvider.family<void, LoginParm>(
           ref.read(loginStatusProvider.notifier).state = RequestStatus.loaded;
         });
         ref.read(userEntityProvider.notifier).update(loginEntity.user);
-        ref.read(appSharedPreferencesProvider.notifier).setAccessToken(loginEntity.token);
+        ref.read(appSharedPreferencesProvider.notifier)
+          ..setAccessToken(loginEntity.token)
+          ..setUserEmail(loginEntity.user.email)
+          ..setUserId(loginEntity.user.id)
+          ..setUserPassword(loginParm.password)
+          ..setIsLoggedIn(true);
       },
     );
   },
@@ -116,6 +121,12 @@ final registerProvider = FutureProvider.family<void, RegisterParam>(
         });
         ref.read(userEntityProvider.notifier).update(registerEntity.user);
         ref.read(registerEntityProvider.notifier).state = registerEntity;
+        ref.read(appSharedPreferencesProvider.notifier)
+          ..setAccessToken(registerEntity.token)
+          ..setUserEmail(registerEntity.user.email)
+          ..setUserId(registerEntity.user.id)
+          ..setUserPassword(registerParam.password)
+          ..setIsLoggedIn(true);
       },
     );
   },

@@ -4,4 +4,6 @@ class AppUrls {
   static const String baseUrl = 'http://osamapro.online/api';
   static const String login = '/login';
   static const String register = '/register';
+  static const String links = '/links';
+  static const String update = '/update';
 }

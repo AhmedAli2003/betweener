@@ -104,7 +104,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       ),
                       SecondaryButtonWidget(
                         onTap: () {
-                          //TODO:
                           ref.read(
                             loginProvider(
                               LoginParm(

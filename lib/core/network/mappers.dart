@@ -1,7 +1,9 @@
 import 'package:betweener/core/entities/login_entity.dart';
+import 'package:betweener/core/entities/long_lat_entity.dart';
 import 'package:betweener/core/entities/register_entity.dart';
 import 'package:betweener/core/entities/user_entity.dart';
 import 'package:betweener/core/network/models/login_model.dart';
+import 'package:betweener/core/network/models/long_lat_model.dart';
 import 'package:betweener/core/network/models/register_model.dart';
 import 'package:betweener/core/network/models/user_model.dart';
 
@@ -49,6 +51,15 @@ extension ToRegisterErrorEntity on RegisterErrorModel? {
     return RegisterErrorEntity(
       emailErrors: this?.emailErrors ?? const [],
       passwordErrors: this?.passwordErrors ?? const [],
+    );
+  }
+}
+
+extension ToLongLatEntity on FullLongLatModel? {
+  LongLatEntity toEntity() {
+    return LongLatEntity(
+      lat: double.tryParse(this?.longLatModel?.lat ?? '0') ?? 0.0,
+      long: double.tryParse(this?.longLatModel?.long ?? '0') ?? 0.0,
     );
   }
 }
