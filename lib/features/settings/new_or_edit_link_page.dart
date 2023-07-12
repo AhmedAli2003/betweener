@@ -1,16 +1,25 @@
+import 'package:betweener/core/helper/context_extenition.dart';
+import 'package:betweener/core/network/models/link_model.dart';
+import 'package:betweener/core/router/app_router.dart';
 import 'package:betweener/core/widgets/custom_labeled_textfield_widget.dart';
 import 'package:betweener/core/widgets/secondary_button_widget.dart';
 import 'package:betweener/features/settings/link_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/network/models/api_response.dart';
+import '../../core/provider/link_provider_controller.dart';
 
 class NewOrEditLinkPage extends StatefulWidget {
   final bool isNew;
   final LinkData linkData;
+
   const NewOrEditLinkPage({
     super.key,
     LinkData? linkData,
     required this.isNew,
-  }) : linkData = !isNew && linkData != null ? linkData : const LinkData.empty();
+  }) : linkData =
+            !isNew && linkData != null ? linkData : const LinkData.empty();
 
   @override
   State<NewOrEditLinkPage> createState() => _NewOrEditLinkPageState();
@@ -85,8 +94,16 @@ class _NewOrEditLinkPageState extends State<NewOrEditLinkPage> {
                 ),
                 const SizedBox(height: 48),
                 SecondaryButtonWidget(
-                  onTap: () {
+                  onTap: () async {
                     //TODO: save or add
+                    ApiResponse apiResponse = await Provider.of<LinkProviderController>(context,listen: false)
+                        .addLink(links: Links(title: 'ahmed',link: 'adsfdf'));
+                    if (apiResponse.success) {
+                      AppRouter.homePage;
+                    }
+                    context.showSnackBar(
+                        message: apiResponse.message,
+                        error: !apiResponse.success);
                   },
                   text: isNew ? 'Add' : 'Save',
                   width: 120,

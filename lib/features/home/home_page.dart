@@ -1,7 +1,9 @@
 import 'package:betweener/core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:provider/provider.dart';
+import '../../core/provider/link_provider_controller.dart';
+import '../../core/router/app_router.dart';
 import 'widgets/container_link_home_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<LinkProviderController>(context,listen: false).read();
+  }
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +28,10 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
           child: Text(
             'Hello, Ahmed!',
-            style: GoogleFonts.roboto(fontSize: 28, color: const Color(0xff2D2B4E), fontWeight: FontWeight.w600),
+            style: GoogleFonts.roboto(
+                fontSize: 28,
+                color: const Color(0xff2D2B4E),
+                fontWeight: FontWeight.w600),
           ),
         ),
         const SizedBox(
@@ -43,36 +53,62 @@ class _HomePageState extends State<HomePage> {
           thickness: 2.5,
         ),
         const SizedBox(
-          height: 40,
+          height: 20,
         ),
         ConstrainedBox(
             constraints: const BoxConstraints(
               maxHeight: 100,
             ),
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              scrollDirection: Axis.horizontal,
-              children: const [
-                ListT(
-                  color: Color(0xffFFE6A6),
-                  title: 'FACEBOOK',
+            child: Row(
+              children: [
+                Consumer<LinkProviderController>(
+                  builder: (context, value, child) {
+                    if (value.linkF.isNotEmpty) {
+                      return ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: value.linkF.length,
+                        itemBuilder: (context, index) {
+                          return ListT(
+                            title: value.linkF[index].title!,
+                            subtitle: value.linkF[index].link!,
+                          );
+                        },
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
-                ListT(
-                  color: Color(0xffFFE6A6),
-                  title: 'INSTAGRAM',
-                ),
-                ListT(
-                  color: Color(0xffE7E5F1),
-                  title: '+',
-                  subtitle: 'Add More',
-                  size: 32,
-                  colorTitle: Color(0xff2D2B4E),
-                  fontWeight: FontWeight.w600,
-                  
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRouter.newOrEditLink);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5))),
+                        child: const Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Icon(Icons.add), Text('Add')],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             )),
       ],
     );
   }
+
+
 }

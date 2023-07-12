@@ -5,6 +5,8 @@ import 'package:betweener/features/home/home_page.dart';
 import 'package:betweener/features/main_app/widgets/custom_floating_nav_bar.dart';
 import 'package:betweener/features/profile/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -15,6 +17,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 1;
+  var getResult = 'QR Code Result';
 
   final screensList = [
     const ReceivePage(),
@@ -50,7 +53,9 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              scanQRCode();
+            },
             icon: const Icon(
               Icons.qr_code_scanner_sharp,
               color: Colors.black,
@@ -102,4 +107,21 @@ class _MainPageState extends State<MainPage> {
           : null,
     );
   }
+  void scanQRCode() async {
+    try{
+      final qrCode = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.QR);
+
+      if (!mounted) return;
+
+      setState(() {
+        getResult = qrCode;
+      });
+      print("QRCode_Result:--");
+      print(qrCode);
+    } on PlatformException {
+      getResult = 'Failed to scan QR Code.';
+    }
+
+  }
+
 }
