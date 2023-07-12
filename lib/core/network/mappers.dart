@@ -1,5 +1,7 @@
+import 'package:betweener/core/entities/linkes_entity.dart';
 import 'package:betweener/core/entities/login_entity.dart';
 import 'package:betweener/core/entities/user_entity.dart';
+import 'package:betweener/core/network/models/links_model.dart';
 import 'package:betweener/core/network/models/login_model.dart';
 import 'package:betweener/core/network/models/user_model.dart';
 
@@ -27,6 +29,17 @@ extension ToUserEntity on UserModel? {
       isActive: this?.isActive ?? 0,
       lastUpdateDate: this?.lastUpdateDate ?? 'Unknown',
       fcm: this?.fcm ?? 'Unknown',
+    );
+  }
+}
+
+extension ToLinksEntity on Links? {
+  LinksEntity toEntity() {
+    return LinksEntity(
+      links: this?.links ?? <String>[''],
+      title: this?.title ?? 'Unknown',
+      link: this?.link ?? 'Unknown',
+      username: this?.username ?? 'Unknown',
     );
   }
 }
