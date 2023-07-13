@@ -1,3 +1,4 @@
+
 import 'package:betweener/core/entities/linkes_entity.dart';
 import 'package:betweener/core/network/failures/failure.dart';
 import 'package:betweener/core/network/mappers.dart';
@@ -43,7 +44,7 @@ class LinksRepository {
 
   LinksResponse deleteLinks(int id, String token, String title, String link, {String username = '', int isActive = 0}) async {
     try {
-      final response = await _apiClient.deleteLinks(id: id, token: token, title: title, link: link);
+      final response = await _apiClient.deleteLinks(id: id, token: token);
       return Right(response.toEntity());
     } catch (error) {
       if (!(await _networkInfo.hasConnection)) {

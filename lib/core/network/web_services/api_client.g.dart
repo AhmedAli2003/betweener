@@ -54,7 +54,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<RegisterSuccessModel> register({
+  Future<RegisterModel> register({
     required String name,
     required String email,
     required String password,
@@ -69,8 +69,8 @@ class _ApiClient implements ApiClient {
       'password': password,
       'password_confirmation': passwordConfirmation,
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<RegisterSuccessModel>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RegisterModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -86,7 +86,7 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = RegisterSuccessModel.fromJson(_result.data!);
+    final value = RegisterModel.fromJson(_result.data!);
     return value;
   }
 
@@ -158,46 +158,6 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<Links> deleteLinks({
-    required int id,
-    required String token,
-    required String title,
-    required String link,
-    String username = '',
-    int isActive = 0,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
-    final _data = {
-      'title': title,
-      'link': link,
-      'username': username,
-      'isActive': isActive,
-    };
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Links>(Options(
-      method: 'DELETE',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/links/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Links.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<Links> updateLinks({
     required int id,
     required String token,
@@ -234,6 +194,64 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     final value = Links.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Links> deleteLinks({
+    required int id,
+    required String token,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Links>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/links/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Links.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<FullLongLatModel> updateUserLocation({required int id}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<FullLongLatModel>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/update/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = FullLongLatModel.fromJson(_result.data!);
     return value;
   }
 

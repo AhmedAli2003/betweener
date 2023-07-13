@@ -76,8 +76,9 @@ class _MainPageState extends ConsumerState<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(ref.watch(appSharedPreferencesProvider.notifier).getAccessToken());
     return Scaffold(
-      appBar: /*getAppBar()*/ AppBar(title: Text(ref.watch(appSharedPreferencesProvider.notifier).getAccessToken())),
+      appBar: getAppBar(),
       body: screensList[_currentIndex],
       extendBody: true,
       bottomNavigationBar: CustomFloatingNavBar(

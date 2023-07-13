@@ -4,7 +4,5 @@ class Failure {
   const Failure(this.statusCode, this.message);
 
   @override
-  String toString() {
-    return message;
-  }
+  String toString() => 'Failure(statusCode: $statusCode, message: $message)';
 }

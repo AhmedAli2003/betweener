@@ -1,8 +1,10 @@
+import 'package:betweener/core/providers/shared_preferences_provider.dart';
 import 'package:betweener/core/router/app_router.dart';
 import 'package:betweener/core/constants/app_assets.dart';
 import 'package:betweener/core/theme/app_colors.dart.dart';
 import 'package:betweener/core/widgets/secondary_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -27,11 +29,16 @@ class OnBoardingPage extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            SecondaryButtonWidget(
-              text: 'Get Started',
-              width: double.infinity,
-              onTap: () {
-                Navigator.pushReplacementNamed(context, AppRouter.loginPage);
+            Consumer(
+              builder: (context, ref, child) {
+                return SecondaryButtonWidget(
+                  text: 'Get Started',
+                  width: double.infinity,
+                  onTap: () {
+                    ref.read(appSharedPreferencesProvider.notifier).setOnBoardingScreenFirstTime();
+                    Navigator.pushReplacementNamed(context, AppRouter.loginPage);
+                  },
+                );
               },
             ),
             const Spacer()
