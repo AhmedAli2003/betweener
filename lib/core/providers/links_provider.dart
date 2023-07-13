@@ -22,7 +22,7 @@ final getAllLinksProvider = FutureProvider<void>((ref) async {
   );
 });
 
-final PostLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
+final postLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
   final linksRepo = ref.watch(linksRepoProvider);
   final result = await linksRepo.postLinks(title: linksParam.title, link: linksParam.link);
   result.fold(
@@ -31,7 +31,7 @@ final PostLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksPara
   );
 });
 
-final UpdateLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
+final updateLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
   final linksRepo = ref.watch(linksRepoProvider);
   final token = ref.read(appSharedPreferencesProvider.notifier).getAccessToken();
   final id = ref.read(appSharedPreferencesProvider.notifier).getUserId();
@@ -44,7 +44,7 @@ final UpdateLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksPa
 });
 
 
-final DeleteLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
+final deleteLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
   final linksRepo = ref.watch(linksRepoProvider);
   final token = ref.read(appSharedPreferencesProvider.notifier).getAccessToken();
   final id = ref.read(appSharedPreferencesProvider.notifier).getUserId();

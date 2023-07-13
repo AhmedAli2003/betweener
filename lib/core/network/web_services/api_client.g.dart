@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://osamapro.online/api';
+    baseUrl ??= 'https://4994-213-6-136-158.ngrok-free.app/api';
   }
 
   final Dio _dio;
