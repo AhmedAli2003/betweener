@@ -1,4 +1,3 @@
-import 'package:betweener/core/entities/linkes_entity.dart';
 import 'package:betweener/core/network/repo/link_repository.dart';
 import 'package:betweener/core/providers/auth_providers.dart';
 import 'package:betweener/core/providers/shared_preferences_provider.dart';
@@ -32,17 +31,30 @@ final PostLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksPara
   );
 });
 
-// final UpdateLinksProvider = FutureProvider.family<LinksEntity, LinkParam>((ref, linksParam) async {
-//   final linksRepo = ref.watch(linksRepoProvider);
-//   final token = ref.read(appSharedPreferencesProvider.notifier).getAccessToken();
-//     // final id = ref.read(appSharedPreferencesProvider.notifier).g();
+final UpdateLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
+  final linksRepo = ref.watch(linksRepoProvider);
+  final token = ref.read(appSharedPreferencesProvider.notifier).getAccessToken();
+  final id = ref.read(appSharedPreferencesProvider.notifier).getUserId();
 
-//   final result = await linksRepo.updateLinks(id, token, linksParam.title, linksParam.link);
-//   result.fold(
-//     (failure) => null,
-//     (links) => null,
-//   );
-// });
+  final result = await linksRepo.updateLinks(id, token, linksParam.title, linksParam.link);
+  result.fold(
+    (failure) => null,
+    (links) => null,
+  );
+});
+
+
+final DeleteLinksProvider = FutureProvider.family<void, LinkParam>((ref, linksParam) async {
+  final linksRepo = ref.watch(linksRepoProvider);
+  final token = ref.read(appSharedPreferencesProvider.notifier).getAccessToken();
+  final id = ref.read(appSharedPreferencesProvider.notifier).getUserId();
+
+  final result = await linksRepo.deleteLinks(id, token);
+  result.fold(
+    (failure) => null,
+    (links) => null,
+  );
+});
 
 class LinkParam {
   final String title;
