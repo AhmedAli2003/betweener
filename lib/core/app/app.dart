@@ -11,8 +11,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Betweener',
       theme: appTheme,
-      initialRoute: AppRouter.receivePage,
-      initialRoute: AppRouter.editUserInfo,
+      initialRoute: AppRouter.splashScreen,
       onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }

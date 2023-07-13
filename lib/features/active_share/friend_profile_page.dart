@@ -65,7 +65,7 @@ class FriendProfilePage extends StatelessWidget {
                     ],
                   ));
             },
-          ),
+          )
         ),
       ]),
     );
