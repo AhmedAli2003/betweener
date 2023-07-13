@@ -1,4 +1,3 @@
-import 'package:betweener/core/entities/linkes_entity.dart';
 import 'package:betweener/core/network/repo/link_repository.dart';
 import 'package:betweener/core/providers/auth_providers.dart';
 import 'package:betweener/core/providers/shared_preferences_provider.dart';
