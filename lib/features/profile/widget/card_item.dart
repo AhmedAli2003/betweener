@@ -5,9 +5,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({
-    Key? key,
+    super.key,
     required this.itemList,
-  }) : super(key: key);
+  });
 
   final List<String> itemList;
 
@@ -57,7 +57,7 @@ class CardItem extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                ),
+                )
               ],
             ),
             child: ListTile(
@@ -95,7 +95,4 @@ class CardItem extends StatelessWidget {
     );
   }
 }
-
-void doNothing(BuildContext context) {
-  // Do nothing
-}
+void doNothing(BuildContext context) {}
