@@ -1,7 +1,9 @@
+import 'package:betweener/core/entities/linkes_entity.dart';
 import 'package:betweener/core/entities/login_entity.dart';
 import 'package:betweener/core/entities/long_lat_entity.dart';
 import 'package:betweener/core/entities/register_entity.dart';
 import 'package:betweener/core/entities/user_entity.dart';
+import 'package:betweener/core/network/models/links_model.dart';
 import 'package:betweener/core/network/models/login_model.dart';
 import 'package:betweener/core/network/models/long_lat_model.dart';
 import 'package:betweener/core/network/models/register_model.dart';
@@ -60,6 +62,17 @@ extension ToLongLatEntity on FullLongLatModel? {
     return LongLatEntity(
       lat: double.tryParse(this?.longLatModel?.lat ?? '0') ?? 0.0,
       long: double.tryParse(this?.longLatModel?.long ?? '0') ?? 0.0,
+    );
+  }
+}
+
+extension ToLinksEntity on Links? {
+  LinksEntity toEntity() {
+    return LinksEntity(
+      links: this?.links ?? <String>[''],
+      title: this?.title ?? 'Unknown',
+      link: this?.link ?? 'Unknown',
+      username: this?.username ?? 'Unknown',
     );
   }
 }
