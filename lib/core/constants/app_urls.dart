@@ -6,4 +6,6 @@ class AppUrls {
   static const String register = '/register';
   static const String links = '/links';
   static const String update = '/update';
+
+  static const String testServer = 'www.google.com';
 }

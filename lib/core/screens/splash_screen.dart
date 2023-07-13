@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isLoggedIn) {
       ref.read(loginProvider(LoginParm(email: email, password: password)));
     }
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (isFirstTime) {
         Navigator.pushReplacementNamed(context, AppRouter.onBoardingPage);
       } else if (isLoggedIn) {

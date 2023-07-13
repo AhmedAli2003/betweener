@@ -38,16 +38,6 @@ abstract class ApiClient {
     @Field('isActive') int isActive = 0,
   });
 
-  @DELETE('${AppUrls.links}/{id}')
-  Future<Links> deleteLinks({
-    @Path() required int id,
-    @Header('Authorization') required String token,
-    @Field('title') required String title,
-    @Field('link') required String link,
-    @Field('username') String username = '',
-    @Field('isActive') int isActive = 0,
-  });
-
   @PUT('${AppUrls.links}/{id}')
   Future<Links> updateLinks({
     @Path() required int id,
@@ -56,6 +46,12 @@ abstract class ApiClient {
     @Field('link') required String link,
     @Field('username') String username = '',
     @Field('isActive') int isActive = 0,
+  });
+
+  @DELETE('${AppUrls.links}/{id}')
+  Future<Links> deleteLinks({
+    @Path() required int id,
+    @Header('Authorization') required String token,
   });
 
   @PUT('${AppUrls.update}/{id}')

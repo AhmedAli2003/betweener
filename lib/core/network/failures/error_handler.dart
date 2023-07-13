@@ -53,7 +53,7 @@ class ErrorHandler implements Exception {
         if (exception.response?.statusCode != null && exception.response?.statusMessage != null) {
           return Failure(exception.response!.statusCode!, exception.response!.data['message']);
         }
-        return ConnectionState.unknown.getFailure();
+        return ConnectionState.badRequest.getFailure();
       case DioExceptionType.cancel:
         return ConnectionState.cancel.getFailure();
       case DioExceptionType.connectionError:

@@ -158,46 +158,6 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<Links> deleteLinks({
-    required int id,
-    required String token,
-    required String title,
-    required String link,
-    String username = '',
-    int isActive = 0,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
-    final _data = {
-      'title': title,
-      'link': link,
-      'username': username,
-      'isActive': isActive,
-    };
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Links>(Options(
-      method: 'DELETE',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/links/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Links.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<Links> updateLinks({
     required int id,
     required String token,
@@ -219,6 +179,37 @@ class _ApiClient implements ApiClient {
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Links>(Options(
       method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/links/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Links.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Links> deleteLinks({
+    required int id,
+    required String token,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Links>(Options(
+      method: 'DELETE',
       headers: _headers,
       extra: _extra,
     )
